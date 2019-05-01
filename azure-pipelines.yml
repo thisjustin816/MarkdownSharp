@@ -12,3 +12,17 @@ pool:
 steps:
 - script: build.cmd
   displayName: 'Build'
+
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/bin/Release/**/*.dll'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Stage Binaries'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'MarkdownSharp'
+    publishLocation: 'Container'
+  displayName: 'Publish Build Artifact'
+  
