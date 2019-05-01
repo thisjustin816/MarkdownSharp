@@ -15,7 +15,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**/bin/Release/**/*.dll'
+    SourceFolder: 'src/MarkdownSharp/bin/Release'
+    Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Stage Binaries'
 
